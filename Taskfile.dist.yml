@@ -1,0 +1,239 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task: run
+    desc: see run. Run with `task` and no args
+
+  run:
+    deps:
+      - build
+    cmds:
+      - bun run src/index.ts {{.CLI_ARGS}}
+    desc: builds && Runs the wayland compositor. Run with `task` and no args
+    env:
+      # DEBUG_TURN_OFF_OUTPUT: 1
+      # WAYLAND_DEBUG: 1
+      DEV: 1
+      WAYLAND_DEBUG_HIDE_SURFACE_AND_BUFFER_MESSAGES: 1
+    silent: true
+
+  profile:
+    deps:
+      - build
+    cmds:
+      # - clear
+      - bun run --inspect-wait=6499 src/index.ts {{.CLI_ARGS}}
+    desc: builds && Runs the wayland compositor. Run with `task` and no args
+    env:
+      # WAYLAND_DEBUG: 1
+      DEV: 1
+      WAYLAND_DEBUG_HIDE_SURFACE_AND_BUFFER_MESSAGES: 1
+    silent: true
+
+  build:
+    deps:
+      - scripts:bun-install-types:run
+      - c-interop:build
+      - scripts:gen-protocol:build
+    desc: Build everything need to run the wayland compositor
+
+  publish-local:
+    deps:
+      - build
+    silent: true
+    env:
+      NO_STRIP: 1
+    cmds:
+      # Patch the canvas module so that it will work with appimage
+      - cp ./patches/canvas/new.js ./node_modules/canvas/lib/bindings.js
+      - defer: cp ./patches/canvas/old.js ./node_modules/canvas/lib/bindings.js
+
+      # TODO non-deterministically the bun build command will fail,
+      # we should do a core dump and open an issue.
+      - echo "If you get exit status 134, just run \`task publish-local\` again a few times. This is a bug in bun."
+      - bun build src/index.ts --compile --sourcemap --asset-naming="[name].[ext]" --outfile deps/{{.APP_NAME}}
+      - sed -i 's/bunfs\/root\/canvas-[^\.]+\.node/ORIGIN\/..\/lib\/cavnas.node/g' deps/{{.APP_NAME}}
+      - rm -rf Appdir
+      - mkdir -p Appdir
+      - mkdir -p dist
+      - |
+        cd dist
+        {{.ROOT_DIR}}/third_party/linuxdeploy-x86_64.AppImage \
+        --executable={{.ROOT_DIR}}/deps/{{.APP_NAME}} \
+        --library={{.ROOT_DIR}}/deps/libinterop/lib/x86_64-linux-gnu/interop.node \
+        --library={{.ROOT_DIR}}/node_modules/canvas/build/Release/canvas.node \
+        --appdir={{.ROOT_DIR}}/Appdir \
+        --desktop-file={{.ROOT_DIR}}/resources/term.everything❗mmulet.com.desktop \
+        --icon-file={{.ROOT_DIR}}/resources/icon.png \
+        --output appimage
+
+  distribute:
+    desc: Create a distributable appimage using podman
+    cmds:
+      - chmod +x ./distribute.sh
+      - ./distribute.sh
+    # cmds:
+    #   - "{{.PODMAN}} build -t term.everything:appimage -f ./resources/ContainerFile ."
+    #   - "{{.PODMAN}} create --name term-appimg term.everything:appimage"
+    #   - "{{.PODMAN}} cp term-appimg:/out ./dist"
+    #   - "{{.PODMAN}} rm term-appimg"
+    #   - "{{.PODMAN}} rmi -f term.everything:appimage"
+    #   - "{{.PODMAN}} image prune -f"
+    #   - "{{.PODMAN}} unmount -a || true"
+    #   - "{{.PODMAN}} system reset -f || true"
+    #   - "chmod -R u+rwX {{.PODMAN_ROOT}} || true"
+    #   - rm -rf {{.PODMAN_ROOT}} || true
+    #   - rm -rf {{.PODMAN_RUNROOT}} || true
+    #   - echo ""
+    #   - echo "Output is in ./dist/out/term.everything!mmulet.AppImage"
+    # silent: true
+
+  publish-podman:
+    # podman containers can't easily use AppImages, so we just use --app-image-extract
+    deps:
+      - build
+    silent: true
+    env:
+      NO_STRIP: 1
+    cmds:
+      # Patch the canvas module so that it will work with appimage
+      - cp ./patches/canvas/new.js ./node_modules/canvas/lib/bindings.js
+      - defer: cp ./patches/canvas/old.js ./node_modules/canvas/lib/bindings.js
+
+      # TODO non-deterministically the bun build command will fail,
+      # we should do a core dump and open an issue.
+      - echo "If you get exit status 134, just run \`task publish-podman\` again a few times. This is a bug in bun."
+      - bun build src/index.ts --compile --sourcemap --asset-naming="[name].[ext]" --outfile deps/{{.APP_NAME}}
+      - sed -i 's/bunfs\/root\/canvas-[^\.]+\.node/ORIGIN\/..\/lib\/cavnas.node/g' deps/{{.APP_NAME}}
+      - rm -rf Appdir
+      - mkdir -p Appdir
+      - mkdir -p dist
+      - |
+        cd third_party
+        ./linuxdeploy-x86_64.AppImage --appimage-extract
+        cd ../dist
+        ../third_party/squashfs-root/AppRun \
+        --executable={{.ROOT_DIR}}/deps/{{.APP_NAME}} \
+        --library={{.ROOT_DIR}}/deps/libinterop/lib/x86_64-linux-gnu/interop.node \
+        --library={{.ROOT_DIR}}/node_modules/canvas/build/Release/canvas.node \
+        --appdir={{.ROOT_DIR}}/Appdir \
+        --desktop-file={{.ROOT_DIR}}/resources/term.everything❗mmulet.com.desktop \
+        --icon-file={{.ROOT_DIR}}/resources/icon.png \
+        --output appimage
+
+    desc: Publish into single file executable appimage, (*Note* If you get exit status 134, just try again a few times, this is a (random) bug in bun)
+  fix-that-stupid-publish-error:
+    silent: true
+    cmds:
+      - ./third_party/appimagetool-x86_64.AppImage $(realpath ./Appdir)
+
+  clean-repo:
+    deps:
+      - c-interop:clean
+      - scripts:gen-protocol:clean
+      - clean-publish
+    desc: Clean (removes the output and build artifacts) from everything except third-party code
+
+  clean-publish:
+    cmds:
+      - rm -rf dist
+      - rm -rf Appdir
+      - rm -rf deps
+
+  # clean-repo plus third-party code
+  clean-all:
+    deps:
+      - clean-repo
+      - scripts:bun-install-types:clean
+    desc: Cleans everything (removes output and build artifacts)
+
+  # some useful shortcuts
+
+  commit:
+    deps:
+      - scripts:hide-show:hide
+    cmds:
+      - git add -A
+      - git commit
+    desc: shortcut for `task hide-etc; git add -A; git commit`
+    silent: true
+
+  check:
+    deps:
+      - scripts:bun-install-types:run
+    cmds:
+      - bunx tsc
+    silent: true
+    desc: Type check the typescript code (ie run `tsc`)
+
+  # scripts
+
+  hide-etc:
+    cmds:
+      - task: scripts:hide-show:hide
+    desc: Hide tools and deps from vscode (use show-etc to show)
+
+  show-etc:
+    cmds:
+      - task: scripts:hide-show:show
+    desc: UnHide tools and deps from vscode (use hide-etc to show)
+
+  make-source:
+    cmds:
+      - task: scripts:make-source
+    vars:
+      JS_FUNC: "{{.JS_FUNC}}"
+
+    desc: Make a .c in c_interop/src, .h file in c_interop/include and adds the source to c_interop/meson.build `task make-source [JS_FUNC=1] NAME=<name>`
+  remove-source:
+    cmds:
+      - task: scripts:make-source:remove
+    desc: |
+      Remove a source made with `task make-source `,
+      will use git to refuse to remove source files with uncommitted changes. 
+      `task remove-source [JS_FUNC=1] NAME=<name>`
+    vars:
+      JS_FUNC: "{{.JS_FUNC}}"
+      FORCE: "{{.FORCE}}"
+
+  make-w-i-o:
+    cmds:
+      - task: scripts:make-wayland-interface-object
+    silent: true
+    vars:
+      NAME: "{{.NAME}}"
+      GLOBAL: "{{.GLOBAL}}"
+      FORCE: "{{.FORCE}}"
+
+includes:
+  c-interop:
+    taskfile: ./c_interop
+    internal: true
+  third-party:
+    taskfile: ./third_party
+    internal: true
+  scripts:
+    taskfile: ./scripts
+    internal: true
+  test:
+    taskfile: ./tests
+    silent: true
+
+vars:
+  APP_NAME: term.everything!mmulet.com
+  PROTOCOLs_OUT_DIR: src/protocols
+
+  PODMAN_ROOT: ./.podman
+  PODMAN_RUNROOT: ./.podman-run
+  PODMAN: podman --root {{.PODMAN_ROOT}} --runroot {{.PODMAN_RUNROOT}}
+
+  glib_out_dir: deps/glib
+
+  chafa_OUT_DIR: deps/chafa
+
+  chafa_LIB_DIR: "{{.chafa_OUT_DIR}}/lib"
+  chafa_PKG_CONFIG_PATH: "{{.chafa_LIB_DIR}}/pkgconfig"

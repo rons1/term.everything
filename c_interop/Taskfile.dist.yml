@@ -1,0 +1,59 @@
+version: "3"
+
+
+
+tasks:
+
+  build:
+    dir: ..
+    deps:
+      - build-setup
+    cmds:
+      - |
+        cd {{.TASKFILE_DIR}}
+        meson install -C build
+    silent: true
+    env:
+      PKG_CONFIG_PATH:: '{{.chafa_PKG_CONFIG_PATH}}'
+  clean:
+    dir: ..
+    deps:
+      - clean-setup
+    cmds:
+      - rm -rf {{.ROOT_DIR}}/{{.libinterop_OUT_DIR}}
+
+
+  build-setup:
+
+    internal: true
+    silent: true
+    cmds:
+      - |
+        cd {{.TASKFILE_DIR}}
+        meson setup build --prefix={{.ROOT_DIR}}/{{.libinterop_OUT_DIR}}
+    env:
+      PKG_CONFIG_PATH: '{{.chafa_PKG_CONFIG_PATH}}'
+    status:
+      - test -d {{.TASKFILE_DIR}}/build
+  
+  clean-setup:
+
+    cmds:
+      - rm -rf {{.TASKFILE_DIR}}/build
+
+  # check-chafa:
+  #   internal: true
+  #   silent: true
+  #   cmds:
+  #     - |
+  #       echo "Chafa is not installed."
+  #       echo "On ubuntu try: "
+  #       echo "sudo apt install libchafa-dev"
+  #       echo "On other systems, check your package manager for the dependency."
+  #       false
+  #   status:
+  #     -  pkg-config --cflags chafa
+
+
+vars:
+  libinterop_OUT_DIR: deps/libinterop

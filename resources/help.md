@@ -1,0 +1,90 @@
+Usage:
+
+```bash
+term.everything❗mmulet.com-x86_64.AppImage [options]
+                                      [-- some_app_to_term [some_app_args]]
+```
+## Typical Usage:
+
+- Navigate to the directory containing the app:
+  `cd <directory with the app>`
+- Ensure the app has execute permissions:
+  `chmod +x ./term.everything❗mmulet.com-x86_64.AppImage`
+- Then run:
+  `./term.everything❗mmulet.com-x86_64.AppImage -- \
+-- firefox https://www.youtube.com/@BlueyOfficialChannel/featured`
+  Note: Everything after `--` is passed to the terminal❗
+
+## App didn't open in the terminal?
+
+Try using `--support-old-apps` to add support for older applications:
+
+- `term.everything❗mmulet.com-x86_64.AppImage --support-old-apps \
+-- firefox https://www.youtube.com/@BlueyOfficialChannel/featured`
+
+## Advanced Usage:
+
+Set a custom Wayland display name along with a custom Xwayland display name:
+`./term.everything❗mmulet.com-x86_64.AppImage --wayland-display-name \
+wayland-3--xwayland ":2 -retro" -- firefox \
+https://www.youtube.com/@BlueyOfficialChannel/featured`
+
+## Galaxy Brain Usage:
+
+- Boot up 5 terminals (A, Bob, Cob, Dobby, E-obby).
+- Run the app in terminal A:
+  `./term.everything❗mmulet.com-x86_64.AppImage --wayland-display-name \
+wayland-2`
+- Then in terminal Bob run:
+  `WAYLAND_DISPLAY=wayland-2 Xwayland :2 -retro`
+- In terminal Cob run:
+  `matchbox-window-manager -display :2`
+- In terminal Dobby run:
+  `DISPLAY=:2 <some_other_x11_app>`
+- In terminal E-obby run:
+  `WAYLAND_DISPLAY=wayland-2 <some_other_wayland_app>`
+
+The app in terminal A hosts a Wayland display (a virtual desktop). Terminal Bob
+runs Xwayland for X11 apps, pointing to terminal A. Terminal Cob runs the X11
+window manager for terminal Bob. Terminal Dobby is an X11 app connecting to Bob,
+and terminal E-obby runs a Wayland app connecting to terminal A.
+
+## Options:
+
+`--wayland-display-name <name>`  
+The Wayland display name.
+@default to wayland-2 (or wayland-3 if
+wayland-2 is in use,etc).
+
+`--xwayland "<all options in one pair of quotes>"`  
+Run an Xwayland display for X11 compatibility (if installed and on the PATH).
+term.everything does not support a rootless X11 server. Default is empty.
+
+`--xwayland-wm "<command to launch the x11 window manager in quotes>"`  
+Specifies the window manager for Xwayland. Default is:  
+"matchbox-window-manager -display <the Xwayland_display from --xwayland>"
+
+`--virtual-monitor-size <width>x<height>`  
+Sets the virtual monitor size in pixels (the display size for all apps). A
+small size is recommended to prevent performance issues. Default is 640x480.
+
+`--support-old-apps`  
+Alias for `--xwayland ":5 -retro" --xwayland-wm \
+"matchbox-window-manager -display :5"`. Enables support for older apps.
+
+`--`  
+Everything after `--` is executed inside the terminal with these environment
+variables:  
+WAYLAND_DISPLAY=<wayland-display-name>  
+DISPLAY=<xwayland-display>
+
+`--shell <absolute_path_to_shell>`  
+The shell used to launch the app. Default is `/bin/bash`.
+
+`--hide-status-bar`  
+Hides the status bar at the top of the terminal. Default is false.
+
+`--version`  
+Print the version number.  
+`-h, --help`  
+Show this help message.
