@@ -39,7 +39,7 @@ Terminal in a terminal in a terminal in a terminal in a terminal.... it's termin
 
 ## Roadmap
 1. [x] Term some things <--- This is where we are at
-  - Some apps or (even most apps) may fail to launch or crash! Please create [an issue]( https://github.com/mmulet/term.everything/issues) if you have problems.
+  - Some apps or (even most apps) may fail to launch or even crash! Please create [an issue]( https://github.com/mmulet/term.everything/issues) if you have problems.
 2. [ ] Term most things
 3. [ ] Term everything❗
 
@@ -51,6 +51,9 @@ term.everything❗ is written in developer friendly [Typescript](https://www.typ
 See [./Contributiong.md](./Contributiong.md).
 
 Legal:
+
+term.everything❗ copyright 2025 Late for Dinner Studios, LLC
+Fontemon copyright 2021 Late for Dinner Studios, LLC
 
 Wing It! movie is licensed under the Creative Commons Attribution 4.0 license
 [Wing it licensing page](https://studio.blender.org/projects/wing-it/pages/licensing/)
