@@ -4,7 +4,7 @@
 <table>
   <tr>
     <td valign="middle">
-      <img width="128" height="128" alt="icon2" src="https://github.com/user-attachments/assets/193584b6-90af-4ef8-85ce-c4a1b9562c1e" />
+      <img width="128" height="128" alt="icon2" src="./resources/icon.png" />
     </td>
     <td><h1>Term.Everything❗</h1></td>
     <td><a href="https://github.com/mmulet/term.everything/releases">Download the beta test now!</a></td>
@@ -13,21 +13,40 @@
 
 ## Run every GUI app in the terminal!
 
-![warp_into_terminal0001-0195](https://github.com/user-attachments/assets/7bc8a9a9-b20f-439a-bd40-e18d593f3cf8)
+![warp_into_terminal0001-0195](./resources/graphics/warp_into_terminal0001-0195.gif)
 
 ## Even over ssh!
 Behold as I play a [video game in a font](https://github.com/mmulet/font-game-engine) in a web browser in a terminal transmitted over ssh (with one hand tied behind my back)!
 
-![ssh_example](https://github.com/user-attachments/assets/9c470430-3407-46a1-8ae6-b2335d0750ec)
+![ssh_example](./resources/graphics/ssh_example.gif)
 
 ## More Examples
+The quality of the window is limited to the number of rows and columns in your
+terminal. If you increase the resolution (ctrl - in alacritty, check your
+terminal) the quality will go up, (but performance may go down).
+
+Here I open up the Wing It! movie, and increase the quality until I get both
+a good frame rate and resolution:
+
+![increase resolution](./resources/graphics/show_increase_res.gif)
+
+If your terminal supports images (like [kitty](https://sw.kovidgoyal.net/kitty/)
+or [iterm2](https://iterm2.com/)) you can render windows at full resolution
+(performance may degrade).
+
+In this example, on my mac, I open iTerm2 ssh into ubuntu and open firefox
+at full resolution:
+
+![full_resultion](resources/graphics/full_resultion.gif)
+
+
 I feel like every single day I hear about another terminal file viewer. I say, stop making terminal file viewers because you can just use the file viewer you already have! In your terminal!
 
-![file_manager](https://github.com/user-attachments/assets/20e08a31-7238-4c7b-892d-da6e2d24535a)
+![file_manager](./resources/graphics/file_manager.gif)
 
 
 Terminal in a terminal in a terminal in a terminal in a terminal.... it's terminals all the way down.
-![terminal_in_terminal](https://github.com/user-attachments/assets/1b562ae5-9bed-4db0-a79b-6b1afca32e5d)
+![terminal_in_terminal](./resources/graphics/terminal_in_terminal.gif)
 
 ## About
 `term.everything❗` is a Linux CLI program to run GUI windows in your terminal. Specifically, `term.everything❗` is a built-from-scratch [Wayland](https://wiki.archlinux.org/title/Wayland) compositor that outputs to a terminal rather than your monitor.
