@@ -2,10 +2,10 @@ import { Pointer_Button, Pointer_Move } from "./convert_keycode_to_xbd_code.ts";
 import { Linux_Event_Codes } from "./Linux_Event_Codes.ts";
 import { Cells } from "./Terminal_Window.ts";
 import open from "open";
-import package_ from "../package.json" with { type: "json" };
 import { type, release } from "os";
 import { readFileSync } from "fs";
 import { Ansi_Escape_Codes } from "./Ansi_Escape_Codes.ts";
+import { get_version_of_app } from "./get_version_of_app.ts";
 
 export interface Line_Button {
   string: string;
@@ -144,7 +144,7 @@ Generated from your system, please include this information in your report:
 - XDG_SESSION_TYPE: ${process.env.XDG_SESSION_TYPE}
 - Wayland Display: ${process.env.WAYLAND_DISPLAY ?? "N/A"}
 - X11 Display: ${process.env.DISPLAY ?? "N/A"}
-- term.everything version: ${package_.version}
+- term.everything version: ${get_version_of_app()}
         `);
       open(
         `https://github.com/mmulet/term.everything/issues/new?title=${title}&body=${body}`
@@ -262,8 +262,7 @@ Generated from your system, please include this information in your report:
           this.terminal_mouse_position.y === 0 &&
           this.terminal_mouse_position.x >= position &&
           this.terminal_mouse_position.x < position + next_string.length
-        ) { 
-
+        ) {
           result += `${Ansi_Escape_Codes.bgWhite}${Ansi_Escape_Codes.fgBlack}${next_string}${Ansi_Escape_Codes.reset}`;
           if (
             this.terminal_mouse_button.pressed &&

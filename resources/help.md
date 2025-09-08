@@ -88,3 +88,6 @@ Hides the status bar at the top of the terminal. Default is false.
 Print the version number.  
 `-h, --help`  
 Show this help message.
+
+`--licenses`
+Print the open source licenses of libraries used in this app.

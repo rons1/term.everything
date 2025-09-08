@@ -34,11 +34,29 @@ tasks:
       WAYLAND_DEBUG_HIDE_SURFACE_AND_BUFFER_MESSAGES: 1
     silent: true
 
+
+  print-licenses:
+    internal: true
+    deps:
+      - scripts:bun-install-types:run
+    cmds:
+      - bunx license-checker --production > ./resources/npm_licenses.txt
+    desc: Print the licenses of all dependencies to file
+    silent: true
+    
+  clean-licenses:
+    internal: true
+    cmds:
+      - rm -f ./resources/npm_licenses.txt
+    desc: Remove the licenses file
+    silent: true
+
   build:
     deps:
       - scripts:bun-install-types:run
       - c-interop:build
       - scripts:gen-protocol:build
+      - print-licenses
     desc: Build everything need to run term.everything!mmulet.com
 
 
@@ -104,16 +122,13 @@ tasks:
           MODE: podman
     silent: true
     desc: Publish into single file executable appimage, (*Note* If you get exit status 134, just try again a few times, this is a (random) bug in bun)
-  fix-that-stupid-publish-error:
-    silent: true
-    cmds:
-      - ./third_party/appimagetool-x86_64.AppImage $(realpath ./Appdir)
 
   clean-repo:
     deps:
       - c-interop:clean
       - scripts:gen-protocol:clean
       - clean-publish
+      - clean-licenses
     desc: Clean (removes the output and build artifacts) from everything except third-party code
 
   clean-publish:

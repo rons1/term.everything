@@ -1,18 +1,1 @@
-# Project-local Podman storage
-.podman
-.podman-run
-
-
-# Build artifacts not needed inside the container
-dist
-Appdir
-deps
-node_modules
-.task
-c_interop/build
-c_interop/*.o
-c_interop/*.so
-third_party/squashfs-root
-bin
-pkg
-.DS_Store
+./.gitignore
