@@ -31,7 +31,7 @@ export class wl_pointer implements d {
     hotspot_y
   ) => {
     /**
-     * @TODO look at the seriel and see it if valid (you are only supposed
+     * @TODO look at the serial and see it if valid (you are only supposed
      * to respond to the most recent serial)
      */
     // if (serial <= this.last_pointer_enter_serial) {

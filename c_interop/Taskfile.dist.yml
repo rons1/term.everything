@@ -3,6 +3,7 @@ version: "3"
 
 
 tasks:
+        # meson install -C build
 
   build:
     dir: ..
@@ -11,7 +12,8 @@ tasks:
     cmds:
       - |
         cd {{.TASKFILE_DIR}}
-        meson install -C build
+        ninja -C build
+        meson install -C build --no-rebuild
     silent: true
     env:
       PKG_CONFIG_PATH:: '{{.chafa_PKG_CONFIG_PATH}}'

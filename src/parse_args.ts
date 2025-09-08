@@ -1,9 +1,8 @@
 import Bun from "bun";
-import { marked } from "marked";
-import { markedTerminal } from "marked-terminal";
 import { parseArgs } from "util";
 //@ts-ignore
 import help_file from "../resources/help.md" with { type: "file" };
+import { render_markdown_to_terminal } from "./render_markdown_to_terminal.ts";
 
 export type Command_Line_args =
   ReturnType<typeof parse_args> extends Promise<infer T> ? T : never;
@@ -51,10 +50,8 @@ export const parse_args = async () => {
     process.exit(0);
   }
   if (args.values.help) {
-    markedTerminal();
-    marked.use(markedTerminal() as any);
     const help_markdown = await Bun.file(help_file).text();
-    console.log(await marked.parse(help_markdown));
+    render_markdown_to_terminal(help_markdown);
     process.exit(0);
   }
   return args;

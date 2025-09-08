@@ -1,7 +1,11 @@
 import { Pointer_Button, Pointer_Move } from "./convert_keycode_to_xbd_code.ts";
 import { Linux_Event_Codes } from "./Linux_Event_Codes.ts";
 import { Cells } from "./Terminal_Window.ts";
-import chalk from "chalk";
+import open from "open";
+import package_ from "../package.json" with { type: "json" };
+import { type, release } from "os";
+import { readFileSync } from "fs";
+import { Ansi_Escape_Codes } from "./Ansi_Escape_Codes.ts";
 
 export interface Line_Button {
   string: string;
@@ -69,7 +73,7 @@ export class Status_Line {
     }
     const text = this.line(
       keys_held_down
-    )`${this.b.escape} ${app_title ? `| ${app_title}` : ""}`;
+    )`${this.b.escape} ${this.sponsor} | ${app_title ?? this.bugs} | `;
 
     this.text_loop_time += delta_time;
     return text.slice(0, process.stdout.columns - 1);
@@ -90,6 +94,80 @@ export class Status_Line {
       },
     },
   } as const;
+
+  sponsor: Line_Button = {
+    string: `[Sponsor this project]`,
+    callback: () => {
+      open("https://github.com/sponsors/mmulet");
+    },
+  };
+
+  bugs: Line_Button = {
+    string: `[Report bugs here]`,
+    callback: () => {
+      const title = encodeURIComponent("Bug Report");
+      const body = encodeURIComponent(`
+Quick question before you fill this out:
+  Is your app opening a new window instead of opening in the terminal?
+    If so, do you have any other windows of the current app open?
+    For example, firefox likes to open a new window (not in the terminal)
+    if you already have at least one firefox window open.
+    Close all other windows, and see if the problem still happens.
+
+## Describe the bug
+A clear and concise description of what the bug is.
+
+## To Reproduce
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+## Expected behavior
+A clear and concise description of what you expected to happen.
+
+## Screenshots
+If applicable, add screenshots to help explain your problem.
+
+## Additional context
+Add any other context about the problem here.
+        
+
+## System Information
+Generated from your system, please include this information in your report:
+- Platform: ${process.platform}
+- Architecture: ${process.arch}
+- Terminal: ${process.env.TERM ?? "N/A"}
+- OS: ${type()} ${release()}
+- OS Details: ${this.get_os_details()}
+- XDG_SESSION_TYPE: ${process.env.XDG_SESSION_TYPE}
+- Wayland Display: ${process.env.WAYLAND_DISPLAY ?? "N/A"}
+- X11 Display: ${process.env.DISPLAY ?? "N/A"}
+- term.everything version: ${package_.version}
+        `);
+      open(
+        `https://github.com/mmulet/term.everything/issues/new?title=${title}&body=${body}`
+      );
+    },
+  };
+
+  get_os_details = () => {
+    try {
+      const osRelease = readFileSync("/etc/os-release", "utf8");
+      const lines = osRelease.split("\n");
+      const osInfo: { [key: string]: string } = {};
+      lines.forEach((line: string) => {
+        const [key, ...valueParts] = line.split("=");
+        if (key && valueParts.length) {
+          osInfo[key] = valueParts.join("=").replace(/"/g, "");
+        }
+      });
+      return `${osInfo.PRETTY_NAME || "Unknown"} (ID: ${osInfo.ID || "N/A"}, VERSION: ${osInfo.VERSION || "N/A"})`;
+    } catch {
+      return "Unable to determine OS details";
+    }
+  };
 
   keyboard_key_hit_button = (
     button: Line_Button,
@@ -184,8 +262,9 @@ export class Status_Line {
           this.terminal_mouse_position.y === 0 &&
           this.terminal_mouse_position.x >= position &&
           this.terminal_mouse_position.x < position + next_string.length
-        ) {
-          result += chalk.bgWhite.black(next_string) + chalk.reset();
+        ) { 
+
+          result += `${Ansi_Escape_Codes.bgWhite}${Ansi_Escape_Codes.fgBlack}${next_string}${Ansi_Escape_Codes.reset}`;
           if (
             this.terminal_mouse_button.pressed &&
             this.terminal_mouse_button.frame_held_time === 0

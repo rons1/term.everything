@@ -1,7 +1,7 @@
 Usage:
 
-```bash
-term.everything❗mmulet.com-x86_64.AppImage [options]
+```
+term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file [options]
                                       [-- some_app_to_term [some_app_args]]
 ```
 ## Typical Usage:
@@ -9,9 +9,9 @@ term.everything❗mmulet.com-x86_64.AppImage [options]
 - Navigate to the directory containing the app:
   `cd <directory with the app>`
 - Ensure the app has execute permissions:
-  `chmod +x ./term.everything❗mmulet.com-x86_64.AppImage`
+  `chmod +x ./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file`
 - Then run:
-  `./term.everything❗mmulet.com-x86_64.AppImage -- \
+  `./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file -- \
 -- firefox https://www.youtube.com/@BlueyOfficialChannel/featured`
   Note: Everything after `--` is passed to the terminal❗
 
@@ -19,13 +19,13 @@ term.everything❗mmulet.com-x86_64.AppImage [options]
 
 Try using `--support-old-apps` to add support for older applications:
 
-- `term.everything❗mmulet.com-x86_64.AppImage --support-old-apps \
+- `term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file --support-old-apps \
 -- firefox https://www.youtube.com/@BlueyOfficialChannel/featured`
 
 ## Advanced Usage:
 
 Set a custom Wayland display name along with a custom Xwayland display name:
-`./term.everything❗mmulet.com-x86_64.AppImage --wayland-display-name \
+`./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file --wayland-display-name \
 wayland-3--xwayland ":2 -retro" -- firefox \
 https://www.youtube.com/@BlueyOfficialChannel/featured`
 
@@ -33,8 +33,8 @@ https://www.youtube.com/@BlueyOfficialChannel/featured`
 
 - Boot up 5 terminals (A, Bob, Cob, Dobby, E-obby).
 - Run the app in terminal A:
-  `./term.everything❗mmulet.com-x86_64.AppImage --wayland-display-name \
-wayland-2`
+  `./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file --wayland-display-name \`
+`wayland-2`
 - Then in terminal Bob run:
   `WAYLAND_DISPLAY=wayland-2 Xwayland :2 -retro`
 - In terminal Cob run:
