@@ -10,24 +10,22 @@ term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file [options]
   `cd <directory with the app>`
 - Ensure the app has execute permissions:
   `chmod +x ./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file`
-- Then run:
-  `./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file -- \
--- firefox https://www.youtube.com/@BlueyOfficialChannel/featured`
-  Note: Everything after `--` is passed to the terminal❗
+- Then run (if you want to run firefox for example):
+  `./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file firefox`
 
 ## App didn't open in the terminal?
+If that app already has a window open, try closing all the existing windows.
 
-Try using `--support-old-apps` to add support for older applications:
+Or try using `--support-old-apps` to add support for older applications:
 
 - `term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file --support-old-apps \
--- firefox https://www.youtube.com/@BlueyOfficialChannel/featured`
+-- firefox`
 
 ## Advanced Usage:
 
 Set a custom Wayland display name along with a custom Xwayland display name:
 `./term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file --wayland-display-name \
-wayland-3--xwayland ":2 -retro" -- firefox \
-https://www.youtube.com/@BlueyOfficialChannel/featured`
+wayland-3--xwayland ":2 -retro" -- firefox`
 
 ## Galaxy Brain Usage:
 
