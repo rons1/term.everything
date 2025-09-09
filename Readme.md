@@ -55,7 +55,7 @@ Terminal in a terminal in a terminal in a terminal in a terminal.... it's termin
 ## About
 `term.everything❗` is a Linux CLI program to run GUI windows in your terminal. Specifically, `term.everything❗` is a built-from-scratch [Wayland](https://wiki.archlinux.org/title/Wayland) compositor that outputs to a terminal rather than your monitor.
 
->Don't know what Wayland is or just want to know more about how this works? Then, head over to [./HowIDidIt.md](./resources/HowIDidIt.md) where I will explain how everything works in detail.
+>Don't know what Wayland is or just want to know more about how this works? Then, head over to [HowIDidIt.md](./resources/HowIDidIt.md) where I will explain how everything works in detail.
 
 ## Try it out!
 [Download the beta test now!](https://github.com/mmulet/term.everything/releases)
