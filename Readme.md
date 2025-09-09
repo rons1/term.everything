@@ -8,7 +8,7 @@
     </td>
     <td><h1>Term.Everything❗</h1></td>
     <td><a href="https://github.com/mmulet/term.everything/releases">Download the beta test now!</a></td>
-    <td><a href=./resources/HowIDidIt.md">HowIDidIt.md</a></td>
+    <td><a href="./resources/HowIDidIt.md">HowIDidIt.md</a></td>
   </tr>
 </table>
 
