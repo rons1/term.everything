@@ -27,7 +27,6 @@ the dependencies
 - [Taskfile https://taskfile.dev/installation/](https://taskfile.dev/installation/) Installed by npm, or install globally for building and running the project, If you want to install globally and used uv in the last step, you can install it with ` uv tool install go-task-bin`
 - [ninja https://github.com/ninja-build/ninja/releases] (https://github.com/ninja-build/ninja/releases) as a build system used by meson
 - Pkg-config, gcc, and cmake with `sudo apt install pkg-config build-essential cmake` on ubuntu
-- [chafa](https://github.com/hpjansson/chafa) for terminal graphics, on ubuntu: `sudo apt install glib-2.0 chafa libchafa-dev`
 - Optional: [vscode](https://code.visualstudio.com/) with these recommended extensions:
     - "mesonbuild.mesonbuild",
     - "ms-vscode.cpptools-extension-pack",
@@ -37,6 +36,10 @@ the dependencies
     - "task.vscode-task",
     - "redhat.vscode-yaml"
 
+```sh
+git submodule update --init --recursive
+``
+
 ### Version map
 These are the versions of the tools used to build and run the project:
 - Bun 1.2.21
@@ -45,8 +48,9 @@ These are the versions of the tools used to build and run the project:
 - pkg-cofig 1.8.1
 - gcc 13.3.0
 - cmake 3.28.3
-- chafa 1.14.0
 - see third_party/Readme.md for the versions of the bundled dependencies
+
+
 
 
 # Running and building

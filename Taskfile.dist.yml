@@ -60,6 +60,7 @@ tasks:
     desc: Build everything need to run term.everything!mmulet.com
 
 
+
    # Shared publish flow (handles both local and podman)
   publish:_common:
     internal: true
@@ -205,7 +206,7 @@ tasks:
 includes:
   c-interop:
     taskfile: ./c_interop
-    internal: true
+    internal: false
   third-party:
     taskfile: ./third_party
     internal: true

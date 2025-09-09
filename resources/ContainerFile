@@ -12,7 +12,8 @@ RUN apt-get update && \
       pkg-config build-essential cmake ninja-build \
       libglib2.0-dev chafa libchafa-dev \
       software-properties-common \
-      file unzip
+      file unzip autoconf automake libtool \
+      libfreetype-dev
       
 
 # Ensure Bun's global bin is on PATH

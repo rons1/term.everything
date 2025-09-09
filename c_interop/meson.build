@@ -7,7 +7,9 @@ project('libinterop', 'cpp', version: '1.2', default_options: [
 
 include = include_directories('include')
 
-chafa = dependency('chafa', version: '>=01.8.0')
+chafa = dependency('chafa', version: '>=1.8.0')
+# chafa_libdir = chafa.get_pkgconfig_variable('libdir')
+chafa_libdir = chafa.get_variable(pkgconfig: 'libdir')
 
 libinterop = shared_library('interop', 
     'src/listen_to_wayland.cpp',
@@ -45,7 +47,21 @@ libinterop = shared_library('interop',
         override_options: 'b_lundef=false',
         dependencies: [
             chafa
-            ])
+            ],
+        # Ensure the loader can find libchafa at runtime
+        # - Use the system libdir reported by pkg-config
+        # - Also allow looking relative to the .node location via $ORIGIN
+          install_rpath: chafa_libdir + ':$ORIGIN',
+          build_rpath: chafa_libdir + ':$ORIGIN',
+        # install_rpath: [ chafa_libdir, '$ORIGIN' ],
+        # Make it runnable from the build dir too
+        # link_args: [
+        #     '-Wl,-rpath,' + chafa_libdir,
+        #     '-Wl,-rpath,$ORIGIN'
+        # ]
+            
+            
+            )
 
  
  

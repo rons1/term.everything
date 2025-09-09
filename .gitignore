@@ -19,6 +19,7 @@ dist
 resources/npm_licenses.txt
 .podman
 .podman-run
+third_party/chafa_source/build
 
 resources/out/bunterm
 
