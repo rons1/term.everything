@@ -2,9 +2,9 @@
 
 
 <table>
-  <tr>
+  <tr>resources/icon.png
     <td valign="middle">
-      <img width="128" height="128" alt="icon2" src="./resources/icon.png" />
+      <img width="128" height="128" alt="icon2" src="resources/icon.png" />
     </td>
     <td><h1>Term.Everything❗</h1></td>
     <td><a href="https://github.com/mmulet/term.everything/releases">Download the beta test now!</a></td>
@@ -13,7 +13,7 @@
 
 ## Run every GUI app in the terminal!
 
-![warp_into_terminal0001-0195](./resources/graphics/warp_into_terminal0001-0195.gif)
+![warp_into_terminal0001-0195](./resources/graphics/warp_in_2.gif)
 
 ## Even over ssh!
 Behold as I play a [video game in a font](https://github.com/mmulet/font-game-engine) in a web browser in a terminal transmitted over ssh (with one hand tied behind my back)!
@@ -30,6 +30,8 @@ a good frame rate and resolution:
 
 ![increase resolution](./resources/graphics/show_increase_res.gif)
 
+----------------
+
 If your terminal supports images (like [kitty](https://sw.kovidgoyal.net/kitty/)
 or [iterm2](https://iterm2.com/)) you can render windows at full resolution
 (performance may degrade).
@@ -39,11 +41,13 @@ at full resolution:
 
 ![full_resultion](resources/graphics/full_resultion.gif)
 
+------------
 
 I feel like every single day I hear about another terminal file viewer. I say, stop making terminal file viewers because you can just use the file viewer you already have! In your terminal!
 
 ![file_manager](./resources/graphics/file_manager.gif)
 
+-------------
 
 Terminal in a terminal in a terminal in a terminal in a terminal.... it's terminals all the way down.
 ![terminal_in_terminal](./resources/graphics/terminal_in_terminal.gif)
@@ -78,3 +82,9 @@ Wing It! movie is licensed under the Creative Commons Attribution 4.0 license
 [Wing it licensing page](https://studio.blender.org/projects/wing-it/pages/licensing/)
 Attribution:
 (CC) Blender Foundation | studio.blender.org
+
+This is Gwern the Term Worm.
+
+![this is gwern](./resources/graphics/this_is_gwern.gif)
+
+He is doing okay. Thanks for asking.
