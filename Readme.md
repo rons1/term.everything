@@ -8,6 +8,7 @@
     </td>
     <td><h1>Term.Everything❗</h1></td>
     <td><a href="https://github.com/mmulet/term.everything/releases">Download the beta test now!</a></td>
+    <td>[HowIDidIt.md](./resources/HowIDidIt.md)</td>
   </tr>
 </table>
 
@@ -19,6 +20,9 @@
 Behold as I play a [video game in a font](https://github.com/mmulet/font-game-engine) in a web browser in a terminal transmitted over ssh (with one hand tied behind my back)!
 
 ![ssh_example](./resources/graphics/ssh_example.gif)
+
+### Read about how it works!
+Check out [HowIDidIt.md](./resources/HowIDidIt.md)
 
 ## More Examples
 The quality of the window is limited to the number of rows and columns in your
