@@ -2,7 +2,7 @@
 
 
 <table>
-  <tr>resources/icon.png
+  <tr>
     <td valign="middle">
       <img width="128" height="128" alt="icon2" src="resources/icon.png" />
     </td>
