@@ -83,7 +83,7 @@ Wing It! movie is licensed under the Creative Commons Attribution 4.0 license
 Attribution:
 (CC) Blender Foundation | studio.blender.org
 
-This is Gwern the Term Worm.
+This is Gwerm the Term Worm.
 
 ![this is gwern](./resources/graphics/this_is_gwern.gif)
 
