@@ -63,7 +63,7 @@ Terminal in a terminal in a terminal in a terminal in a terminal.... it's termin
 ![terminal_in_terminal](./resources/graphics/terminal_in_terminal.gif)
 
 -------------
-With only a small amount hacking, it can run doom!
+With only a small amount hacking, it can run Doom (shareware episode)!
 
 ![Doom](./resources/graphics/doom.gif)
 
