@@ -10,7 +10,12 @@
     <td><a href="https://github.com/mmulet/term.everything/releases">Download the beta test now!</a></td>
     <td><a href="./resources/HowIDidIt.md">HowIDidIt.md</a></td>
   </tr>
-  <tr><td>Works on both x11 and Wayland host sytems.</td></tr>
+  <tr>
+    <td></td>
+    <td>Works on both x11 and Wayland host sytems.</td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>
 
 ## Run every GUI app in the terminal!
