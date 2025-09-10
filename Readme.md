@@ -75,7 +75,7 @@ Check out the [help file here](./resources/help.md) for a usage guide on how to 
 
 ## Contributing
 term.everything❗ is written in developer friendly [Typescript](https://www.typescriptlang.org/) using the [bun](https://bun.com/) engine, with a just a smidge of C++.
-See [./Contributiong.md](./Contributiong.md).
+See [./Contributing.md](./Contributing.md).
 
 Legal:
 
