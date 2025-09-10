@@ -62,6 +62,12 @@ I feel like every single day I hear about another terminal file viewer. I say, s
 Terminal in a terminal in a terminal in a terminal in a terminal.... it's terminals all the way down.
 ![terminal_in_terminal](./resources/graphics/terminal_in_terminal.gif)
 
+-------------
+With only a small amount hacking, it can run doom!
+
+![Doom](./resources/graphics/doom.gif)
+
+
 ## About
 `term.everything❗` is a Linux CLI program to run GUI windows in your terminal. Specifically, `term.everything❗` is a built-from-scratch [Wayland](https://wiki.archlinux.org/title/Wayland) compositor that outputs to a terminal rather than your monitor.
 
@@ -83,16 +89,21 @@ Check out the [help file here](./resources/help.md) for a usage guide on how to 
 term.everything❗ is written in developer friendly [Typescript](https://www.typescriptlang.org/) using the [bun](https://bun.com/) engine, with a just a smidge of C++.
 See [./Contributing.md](./Contributing.md).
 
-Legal:
+## Legal:
 
 term.everything❗ copyright 2025 Late for Dinner Studios, LLC
+---
 Fontemon copyright 2021 Late for Dinner Studios, LLC
-
+---
 Wing It! movie is licensed under the Creative Commons Attribution 4.0 license
 [Wing it licensing page](https://studio.blender.org/projects/wing-it/pages/licensing/)
 Attribution:
 (CC) Blender Foundation | studio.blender.org
+---
+Doom shareware episode is copyright 1993 id Software
+---
 
+## Bonus:
 This is Gwerm the Term Worm.
 
 ![this is gwern](./resources/graphics/this_is_gwern.gif)
