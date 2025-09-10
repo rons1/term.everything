@@ -11,7 +11,7 @@ the operating system, the hardware and each other". With input being mouse/keybo
 and output being graphics, images, anything you see in a "window".
 
 On modern linux, for display servers most systems use either the [Wayland (protocol)](https://en.wikipedia.org/wiki/Wayland_(protocol)) or [x11](https://en.wikipedia.org/wiki/X_Window_System).
-We're going to focuses on Wayland, mostly because it's newer and there are systems in place
+We're going to focus on Wayland, mostly because it's newer and there are systems in place
 to run older x11 apps in wayland for backwards compatibility.
 
 ## Wayland (protocol)
