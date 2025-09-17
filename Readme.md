@@ -4,11 +4,17 @@
 <table>
   <tr>
     <td valign="middle">
-      <img width="128" height="128" alt="icon2" src="resources/icon.png" />
+      <img width="128" height="128" alt="icon2" src="./resources/icon.png" />
     </td>
     <td><h1>Term.Everything❗</h1></td>
     <td><a href="https://github.com/mmulet/term.everything/releases">Download the beta test now!</a></td>
-    <td>[HowIDidIt.md](./resources/HowIDidIt.md)</td>
+    <td><a href="./resources/HowIDidIt.md">HowIDidIt.md</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Works on both x11 and Wayland host systems.</td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
@@ -56,6 +62,12 @@ I feel like every single day I hear about another terminal file viewer. I say, s
 Terminal in a terminal in a terminal in a terminal in a terminal.... it's terminals all the way down.
 ![terminal_in_terminal](./resources/graphics/terminal_in_terminal.gif)
 
+-------------
+With only a small amount hacking, it can run Doom (shareware episode)!
+
+![Doom](./resources/graphics/doom.gif)
+
+
 ## About
 `term.everything❗` is a Linux CLI program to run GUI windows in your terminal. Specifically, `term.everything❗` is a built-from-scratch [Wayland](https://wiki.archlinux.org/title/Wayland) compositor that outputs to a terminal rather than your monitor.
 
@@ -75,18 +87,23 @@ Check out the [help file here](./resources/help.md) for a usage guide on how to 
 
 ## Contributing
 term.everything❗ is written in developer friendly [Typescript](https://www.typescriptlang.org/) using the [bun](https://bun.com/) engine, with a just a smidge of C++.
-See [./Contributiong.md](./Contributiong.md).
+See [./Contributing.md](./Contributing.md).
 
-Legal:
+## Legal:
 
 term.everything❗ copyright 2025 Late for Dinner Studios, LLC
+---
 Fontemon copyright 2021 Late for Dinner Studios, LLC
-
+---
 Wing It! movie is licensed under the Creative Commons Attribution 4.0 license
 [Wing it licensing page](https://studio.blender.org/projects/wing-it/pages/licensing/)
 Attribution:
 (CC) Blender Foundation | studio.blender.org
+---
+Doom shareware episode is copyright 1993 id Software
+---
 
+## Bonus:
 This is Gwerm the Term Worm.
 
 ![this is gwern](./resources/graphics/this_is_gwern.gif)

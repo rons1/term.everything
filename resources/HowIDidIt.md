@@ -11,7 +11,7 @@ the operating system, the hardware and each other". With input being mouse/keybo
 and output being graphics, images, anything you see in a "window".
 
 On modern linux, for display servers most systems use either the [Wayland (protocol)](https://en.wikipedia.org/wiki/Wayland_(protocol)) or [x11](https://en.wikipedia.org/wiki/X_Window_System).
-We're going to focuses on Wayland, mostly because it's newer and there are systems in place
+We're going to focus on Wayland, mostly because it's newer and there are systems in place
 to run older x11 apps in wayland for backwards compatibility.
 
 ## Wayland (protocol)
@@ -40,7 +40,7 @@ So, this means we can do anything we want, so let's output to the terminal!
 
 I take the output given to us by the client and convert the images to terminal
 output, the utf8 characters with ansi escape codes via the [chafa library](https://github.com/hpjansson/chafa/). For input, I take the keyboard and mouse (yes terminals support mice)
-from the stdin. And that's it! Of course, there are about 10K lines of code needed to actually do this in practice, but if you're interested in that I invite you to [checkout the source code](./src/)
+from the stdin. And that's it! Of course, there are about 10K lines of code needed to actually do this in practice, but if you're interested in that I invite you to [check out the source code](../src/).
 
 ## What else can you do with wayland
 I have many other crazy ideas of what else to do custom wayland display server, so stay tuned.
