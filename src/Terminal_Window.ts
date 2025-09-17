@@ -24,6 +24,7 @@ import { Canvas_Desktop } from "./Canvas_Desktop.ts";
 import { Status_Line } from "./Status_Line.ts";
 import { on_exit } from "./on_exit.ts";
 import { Display_Server_Type } from "./get_display_server_type.ts";
+import { Command_Line_args } from "./parse_args.ts";
 
 export type Cells = number & { __brand: "cells" };
 export type Pixels = number & { __brand: "pixels" };
@@ -81,7 +82,8 @@ export class Terminal_Window {
     public socket_listener: Wayland_Socket_Listener,
     public hide_status_bar: boolean,
     desktop_size: Pixel_Size,
-    will_show_app_right_at_startup: boolean
+    will_show_app_right_at_startup: boolean,
+    public args: Command_Line_args
   ) {
     this.canvas_desktop = new Canvas_Desktop(
       desktop_size,
@@ -242,7 +244,8 @@ export class Terminal_Window {
             const scale = code.modifiers & LINUX_MODIFIERS.alt ? 1 : 0.5;
             const amount =
               (scale *
-                ((code.up ? 1 : -1) * this.virtual_monitor_size.height)) /
+                (this.scroll_direction(code.up) *
+                  this.virtual_monitor_size.height)) /
               (this.rendered_screen_size?.height_cells ?? process.stdout.rows);
             for (const s of this.socket_listener.clients) {
               s
@@ -266,6 +269,12 @@ export class Terminal_Window {
         }
       }
     }
+  };
+
+  scroll_direction = (code_up: boolean) => {
+    const code = code_up ? -1 : 1;
+    const reverse = this.args.values["reverse-scroll"] ? -1 : 1;
+    return code * reverse;
   };
 
   desired_frame_time_seconds = 0.016; // 60 fps

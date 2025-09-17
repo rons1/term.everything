@@ -46,6 +46,10 @@ export const parse_args = async () => {
       licenses: {
         type: "boolean",
       },
+      ["reverse-scroll"]: {
+        type: "boolean",
+        default: false,
+      },
     },
     args: Bun.argv.slice(2),
     allowPositionals: true,

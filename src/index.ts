@@ -19,7 +19,8 @@ const terminal_window = new Terminal_Window(
   listener,
   args.values["hide-status-bar"],
   virtual_monitor_size,
-  will_show_app_right_at_startup
+  will_show_app_right_at_startup,
+  args
 );
 
 listener.main_loop();
