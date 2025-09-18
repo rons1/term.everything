@@ -68,7 +68,7 @@ With only a small amount hacking, it can run Doom (shareware episode)!
 ![Doom](./resources/graphics/doom.gif)
 ------
 Run an entire Desktop in your terminal!
-[@ismail-yilmaz](https://github.com/ismail-yilmaz) is running Firefox, on [Rocky Linux](https://rockylinux.org/), in a [VM](https://gitlab.gnome.org/GNOME/gnome-boxes) on [Bobcat](https://github.com/ismail-yilmaz/Bobcat)
+[@ismail-yilmaz](https://github.com/ismail-yilmaz) is running Firefox, on [KDE Neon](https://neon.kde.org) in a [VM](https://gitlab.gnome.org/GNOME/gnome-boxes) on [Bobcat](https://github.com/ismail-yilmaz/Bobcat)
 ![Desktop in VM](./resources/graphics/desktop_in_vm.gif)
 
 And this isn't even full resolution! Checkout the [full vid in in the discussions](https://github.com/mmulet/term.everything/discussions/16#discussioncomment-14390137)
