@@ -6,6 +6,7 @@ import { set_virtual_monitor_size } from "./set_virtual_monitor_size.ts";
 import { parse_args } from "./parse_args.ts";
 import { start_xwayland_if_necessary } from "./start_xwayland_if_necessary.ts";
 import { spawn } from "child_process";
+import { writeFileSync } from "fs";
 
 const args = await parse_args();
 set_virtual_monitor_size(args.values["virtual-monitor-size"]);
@@ -22,6 +23,12 @@ const terminal_window = new Terminal_Window(
   will_show_app_right_at_startup,
   args
 );
+if (args.values["debug-log"]) {
+  console.log = (...args: any[]) => {
+    const message = args.join(" ") + "\n";
+    writeFileSync("debug.log", message, { flag: "a" });
+  };
+}
 
 listener.main_loop();
 terminal_window.main_loop();
@@ -35,6 +42,11 @@ if (command_args.length > 0) {
   const env: any = {
     ...process.env,
     WAYLAND_DISPLAY: listener.wayland_display_name,
+    ...(args.values["support-old-apps"]
+      ? {}
+      : {
+          XDG_SESSION_TYPE: "wayland",
+        }),
   };
   if (display_name !== null) {
     env.DISPLAY = display_name;

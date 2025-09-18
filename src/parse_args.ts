@@ -39,6 +39,9 @@ export const parse_args = async () => {
       version: {
         type: "boolean",
       },
+      ["debug-log"]: {
+        type: "boolean",
+      },
       help: {
         type: "boolean",
         short: "h",

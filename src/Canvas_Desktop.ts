@@ -101,6 +101,25 @@ export class Canvas_Desktop {
     sorted_surfaces.sort((a, b) => {
       return a[0].position.z - b[0].position.z;
     });
+    // for debugging
+    // console.log("\n\n");
+
+    // for (const [
+    //   {
+    //     position: { x, y, z },
+    //     offset: { x: offsetX, y: offsetY },
+    //     role,
+    //     children_in_draw_order,
+    //   },
+    //   _canvas,
+    //   id,
+    // ] of sorted_surfaces) {
+    //   console.log(
+    //     `wl_surface${id} ${role?.type ?? ""} | x:${x} y:${y} z:${z} | offset x:${offsetX} y:${offsetY}
+    //     children: ${children_in_draw_order.join("\n")}`
+    //   );
+    // }
+    // console.log("\n\n");
 
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
