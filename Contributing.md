@@ -6,11 +6,6 @@ Want to change just a couple lines?
 The only dependency you need is `podman
 - [podman https://podman.io/docs/installation](https://podman.io/docs/installation) On ubuntu just use`sudo apt install podman`
 
-
-Then make sure you have downloaded the submodules
-```sh
-git submodule update --init --recursive
-```
 and run the distribute script
 ```sh
 ./distribute.sh
