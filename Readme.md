@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td></td>
-    <td>Works on both x11 and Wayland host systems.</td>
+    <td>Works on both x11 and Wayland host systems!</td>
     <td></td>
     <td></td>
   </tr>
